@@ -18,16 +18,16 @@ public class PasswordError  extends BaseTest implements Constants {
     Topline objTop = new Topline(driver);
 
     public void enterLK(){
-        objMain.clickEnter();
-        checkUrl(TESTURL+"login", driver.getCurrentUrl());
+        objMain.mainPageButton().click();
+        checkString(TESTURL+"login", driver.getCurrentUrl());
     }
     public void goToRegister(){
         objEnter.goToRegister();
-        checkUrl(driver.getCurrentUrl(), TESTURL+"register");
+        checkString(driver.getCurrentUrl(), TESTURL+"register");
     }
     public void checkRegisterError(){
         objReg.register(TESTNAME,TESTMAIL,"12345");
-        checkFeature("Некорректный пароль", objReg.getPassError());
+        checkString("Некорректный пароль", objReg.getPassError());
     }
 
     @Test

@@ -9,11 +9,8 @@ import static io.restassured.RestAssured.given;
 
 public class BaseTest implements Constants {
 
-    public void checkUrl(String url1, String url2){
-        Assert.assertEquals(url1, url2);
-    }
-    public void checkFeature(String feature1, String feature2){
-        Assert.assertEquals(feature1, feature2);
+    public void checkString(String string1, String string2){
+        Assert.assertEquals(string1, string2);
     }
     public void deleteTestUser(String email, String password){
         RestAssured.baseURI = TESTURL;
@@ -31,4 +28,5 @@ public class BaseTest implements Constants {
         given().header("Content-type", "application/json").and().body(params).post("api/auth/register")
                 .then().assertThat().statusCode(200);
     }
+
 }

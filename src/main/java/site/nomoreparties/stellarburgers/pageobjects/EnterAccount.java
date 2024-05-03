@@ -17,6 +17,7 @@ public class EnterAccount {
 //    private By eyeButton = By.className("input__icon input__icon-action");
     private By submit = By.xpath("//button[contains(text(), \"Войти\")]");
     private By register = By.xpath("//a[@href=\"/register\"]");
+    private By rememberPassword = By.xpath("//a[@href=\"/forgot-password\"]");
 
     public void goToRegister(){
         driver.findElement(register).click();
@@ -31,6 +32,10 @@ public class EnterAccount {
     }
     public WebElement submitButton(){
         WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(submit));
+        return x;
+    }
+    public WebElement forgotPassword(){
+        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(rememberPassword));
         return x;
     }
     public void enterAccount(String username, String userpass) throws InterruptedException {

@@ -16,6 +16,7 @@ public class RegisterPage {
     private By password = By.xpath("//input[@name=\"Пароль\"]");
     private By error = By.xpath("//p[contains(@class, \"input__error\")]");
     private By submit = By.xpath("//button[contains(@class, button_button_size_medium__3zxIa) and contains(text(), \"Зарегистрироваться\")]");
+    private By enterAccount = By.xpath("//a[@href=\"/login\"]");
     public void setName(String username){
         driver.findElement(name).sendKeys(username);
     }
@@ -31,6 +32,9 @@ public class RegisterPage {
         setemail(usermail);
         setpass(userpass);
         driver.findElement(submit).click();
+    }
+    public void enterAccount(){
+        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(enterAccount)).click();
     }
 
     public String getPassError(){
