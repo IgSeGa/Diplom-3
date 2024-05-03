@@ -13,15 +13,16 @@ public class TestConstructorSections implements Constants {
 
     public void gotToSauce(){
         objMain.getSauceButton().click();
-        Assert.assertTrue(objMain.getLastSuaceName().isDisplayed());
+        Assert.assertEquals("Соусы", objMain.getSelectedButton().getText());
     }
     public void goToIngreds(){
         objMain.getIngredButton().click();
-        Assert.assertTrue(objMain.getFourthIngredName().isDisplayed());
+        Assert.assertEquals("Начинки", objMain.getSelectedButton().getText());
     }
     public void gotToBuns(){
         objMain.getBunButton().click();
         Assert.assertTrue(objMain.getFirstBun().isDisplayed());
+        Assert.assertEquals("Булки", objMain.getSelectedButton().getText());
     }
     @Test
     public void testConstructor() {
