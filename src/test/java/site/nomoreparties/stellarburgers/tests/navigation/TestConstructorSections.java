@@ -19,6 +19,7 @@ public class TestConstructorSections implements Constants {
         objMain.getIngredButton().click();
         Assert.assertEquals("Начинки", objMain.getSelectedButton().getText());
     }
+
     public void gotToBuns(){
         objMain.getBunButton().click();
         Assert.assertTrue(objMain.getFirstBun().isDisplayed());
