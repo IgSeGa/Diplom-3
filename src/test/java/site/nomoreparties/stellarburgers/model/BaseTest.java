@@ -33,7 +33,7 @@ public class BaseTest implements TestData {
     public WebDriver getDriver() {
         String broswerName = System.getProperty("browser");
         if (broswerName != null && broswerName.equals("yandex")){
-            System.setProperty("webdriver.chrome.driver", "C:/Webdriver/bin/yandexdriver.exe");
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/yandexdriver.exe");
             return new ChromeDriver();
         }
         return new ChromeDriver();
