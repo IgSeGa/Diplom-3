@@ -1,17 +1,20 @@
 package site.nomoreparties.stellarburgers.tests.account;
+import io.qameta.allure.Step;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import site.nomoreparties.stellarburgers.model.BaseTest;
-import site.nomoreparties.stellarburgers.model.Constants;
+import site.nomoreparties.stellarburgers.model.TestData;
 import site.nomoreparties.stellarburgers.pageobjects.Cabinet;
 import site.nomoreparties.stellarburgers.pageobjects.EnterAccount;
 import site.nomoreparties.stellarburgers.pageobjects.MainPage;
 import site.nomoreparties.stellarburgers.pageobjects.Topline;
 
 
-public class TestExitAccount extends BaseTest implements Constants {
+public class TestExitAccount extends BaseTest implements TestData {
 
     private WebDriver driver;
 
@@ -20,31 +23,36 @@ public class TestExitAccount extends BaseTest implements Constants {
         driver = getDriver();
         createTestUser(TESTMAIL, TESTPASS, TESTNAME);
     }
+
+    @Step("Вход в аккаунт")
     public void logIn(WebDriver driver) throws InterruptedException {
         MainPage objMain = new MainPage(driver);
         EnterAccount objEnt = new EnterAccount(driver);
         objMain.mainPageButton().click();
         objEnt.enterAccount(TESTMAIL, TESTPASS);
     }
+    @Step("Вход в личный кабинет")
     public void enterLK(WebDriver driver){
         Topline objTop = new Topline(driver);
         Cabinet objCab = new Cabinet(driver);
         objTop.clickLK();
-        checkString(TESTMAIL, objCab.emailTest());
+        compareString(TESTMAIL, objCab.emailTest());
     }
-    public void exitLK(WebDriver driver) throws InterruptedException {
+    @Step("Выход из учетной записи")
+    public void exitAcoount(WebDriver driver) {
         Cabinet objCab = new Cabinet(driver);
         EnterAccount objEnt = new EnterAccount(driver);
         objCab.getExit().click();
-        objEnt.userName();
-        checkString(TESTURL+"login", driver.getCurrentUrl());
+        Assert.assertTrue("Войти".equals(objEnt.submitButton().getText()));
+        compareString(TESTURL+"login", driver.getCurrentUrl());
     }
     @Test
+    @DisplayName("Проверка выхода из аккаунта")
     public void testExit() throws InterruptedException {
         driver.get(TESTURL);
         logIn(driver);
         enterLK(driver);
-        exitLK(driver);
+        exitAcoount(driver);
     }
     @After
     public void clearUp(){

@@ -1,6 +1,7 @@
 package site.nomoreparties.stellarburgers.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,29 +18,53 @@ public class RegisterPage {
     private By error = By.xpath("//p[contains(@class, \"input__error\")]");
     private By submit = By.xpath("//button[contains(@class, button_button_size_medium__3zxIa) and contains(text(), \"Зарегистрироваться\")]");
     private By enterAccount = By.xpath("//a[@href=\"/login\"]");
+
+    public WebElement getEmailForm(){
+        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(email));
+        return x;
+    }
+    public WebElement getPasswordForm(){
+        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(password));
+        return x;
+    }
+    public WebElement getNameForm(){
+        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(name));
+        return x;
+    }
+    public WebElement getSubmitButton(){
+        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(submit));
+        return x;
+    }
+    public WebElement getEnterAccount(){
+        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(enterAccount));
+        return x;
+    }
+    public WebElement getError(){
+        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(error));
+        return x;
+    }
     public void setName(String username){
-        driver.findElement(name).sendKeys(username);
+        getNameForm().sendKeys(username);
     }
     public void setemail(String usermail){
-        driver.findElement(email).sendKeys(usermail);
+        getEmailForm().sendKeys(usermail);
     }
     public void setpass(String userpass){
-        driver.findElement(password).sendKeys(userpass);
+        getPasswordForm().sendKeys(userpass);
     }
 
     public void register(String username, String usermail, String userpass){
         setName(username);
         setemail(usermail);
         setpass(userpass);
-        driver.findElement(submit).click();
+        getSubmitButton().click();
     }
     public void enterAccount(){
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(enterAccount)).click();
+        getEnterAccount().click();
     }
 
     public String getPassError(){
-        String x = new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(error)).getText();
+        String x = getError().getText();
         return x;
     }
 }

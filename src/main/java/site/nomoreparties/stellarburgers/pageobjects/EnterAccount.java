@@ -14,13 +14,13 @@ public class EnterAccount {
     }
     private By login = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[1]/div/div/input");
     private By password = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[2]/div/div/input");
-//    private By eyeButton = By.className("input__icon input__icon-action");
     private By submit = By.xpath("//button[contains(text(), \"Войти\")]");
     private By register = By.xpath("//a[@href=\"/register\"]");
     private By rememberPassword = By.xpath("//a[@href=\"/forgot-password\"]");
 
-    public void goToRegister(){
-        driver.findElement(register).click();
+    public WebElement registerButton(){
+        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(register));
+        return x;
     }
     public WebElement userName(){
         WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(login));
@@ -38,8 +38,7 @@ public class EnterAccount {
         WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(rememberPassword));
         return x;
     }
-    public void enterAccount(String username, String userpass) throws InterruptedException {
-        Thread.sleep(500);//Без ожидания поля не успевают активироваться
+    public void enterAccount(String username, String userpass) {
         userName().click();
         userName().sendKeys(username);
         userPass().click();

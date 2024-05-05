@@ -7,9 +7,9 @@ import site.nomoreparties.stellarburgers.setup.ForClearUp;
 import site.nomoreparties.stellarburgers.setup.ForSetUp;
 import static io.restassured.RestAssured.given;
 
-public class BaseTest implements Constants {
+public class BaseTest implements TestData {
 
-    public void checkString(String expected, String actual){
+    public void compareString(String expected, String actual){
         Assert.assertEquals(expected, actual);
     }
     public void deleteTestUser(String email, String password){
