@@ -1,6 +1,8 @@
 package site.nomoreparties.stellarburgers.model;
 import io.restassured.RestAssured;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import site.nomoreparties.stellarburgers.setup.ForClearUp;
@@ -35,5 +37,8 @@ public class BaseTest implements TestData {
             return new ChromeDriver();
         }
         return new ChromeDriver();
+    }
+    public void scrollToElenet(WebDriver driver, By element){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(element));
     }
 }

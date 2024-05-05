@@ -37,21 +37,21 @@ public class TestConstructorSections extends BaseTest implements TestData {
     @Step("Скролл до соусов")
     public void checkScrollToSauce(WebDriver driver) throws InterruptedException {
         MainPage objMain = new MainPage(driver);
-        objMain.scrollToElenet(objMain.getFirstSauce());
+        scrollToElenet(driver, objMain.getFirstSauce());
         Thread.sleep(500);
         compareString("Соусы", objMain.getSelectedButton().getText());
     }
     @Step("Скролл до соусов")
     public void checkScrollToIngreds(WebDriver driver) throws InterruptedException {
         MainPage objMain = new MainPage(driver);
-        objMain.scrollToElenet(objMain.getFirstIngred());
+        scrollToElenet(driver, objMain.getFirstIngred());
         Thread.sleep(500);
         compareString("Начинки", objMain.getSelectedButton().getText());
     }
     @Step("Скролл до булок")
     public void checkScrollToBuns(WebDriver driver) throws InterruptedException {
         MainPage objMain = new MainPage(driver);
-        objMain.scrollToElenet(objMain.getFirstBun());
+        scrollToElenet(driver, objMain.getFirstBun());
         Thread.sleep(500);
         compareString("Булки", objMain.getSelectedButton().getText());
     }
