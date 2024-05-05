@@ -51,12 +51,11 @@ public class Register extends BaseTest implements TestData {
     }
     @Step("Регистрация")
     public void register(WebDriver driver) throws InterruptedException {
-        MainPage objMain = new MainPage(driver);
         RegisterPage objReg = new RegisterPage(driver);
         EnterAccount objEnter = new EnterAccount(driver);
         objReg.register(TESTNAME,TESTMAIL,TESTPASS);
-        compareString("Войти в аккаунт", objMain.mainPageButton().getText());
-        compareString(TESTURL, driver.getCurrentUrl());
+        compareString("Войти", objEnter.submitButton().getText());
+        compareString(TESTURL+"login", driver.getCurrentUrl());
         objEnter.enterAccount(TESTMAIL, TESTPASS);
     }
     @Step("Проверка данных зарегистрированного пользователя")
