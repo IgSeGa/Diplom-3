@@ -63,16 +63,10 @@ public class TestRegister extends BaseTest implements TestData {
     }
 
     @Test
-    @DisplayName("Проверка регистрации вход через ЛК")
+    @DisplayName("Проверка регистрации")
     public void checkRegisterViaMainPageButton() {
         enterLogin(driver);
-        goToRegister(driver);
-        register(driver);
-        verifyRegister(driver);
-    }
-    @Test
-    @DisplayName("Проверка регистрации вход через кнопку на главной")
-    public void checkRegisterViaCabinetButton() {
+        driver.navigate().back();
         clickEnter(driver);
         goToRegister(driver);
         register(driver);
