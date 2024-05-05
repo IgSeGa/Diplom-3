@@ -1,15 +1,23 @@
 package site.nomoreparties.stellarburgers.tests.account;
+import com.google.acai.Acai;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import site.nomoreparties.stellarburgers.model.BaseTest;
 import site.nomoreparties.stellarburgers.model.Constants;
+import site.nomoreparties.stellarburgers.model.WebTestConfigModule;
 import site.nomoreparties.stellarburgers.pageobjects.*;
+import javax.inject.Inject;
 
 public class TestLoginPositive extends BaseTest implements Constants {
-    WebDriver driver = new ChromeDriver();
+
+    @Rule
+    public Acai acai = new Acai(WebTestConfigModule.class);
+    @Inject
+    private WebDriver driver;
     MainPage objMain = new MainPage(driver);
     EnterAccount objEnter = new EnterAccount(driver);
     ForgotPassword objForgot = new ForgotPassword(driver);
@@ -40,11 +48,12 @@ public class TestLoginPositive extends BaseTest implements Constants {
         objEnter.forgotPassword().click();
         objForgot.accountFromForgot().click();
         checkString(TESTURL+"login", driver.getCurrentUrl());
+
     }
     public void enterAccount() throws InterruptedException {
         objEnter.enterAccount(TESTMAIL, TESTPASS);
-//        checkString(TESTURL, driver.getCurrentUrl());
         checkString("Оформить заказ", objMain.mainPageButton().getText());
+        checkString(TESTURL, driver.getCurrentUrl());
     }
 
     @Test

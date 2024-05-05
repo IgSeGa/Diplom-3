@@ -1,9 +1,10 @@
 package site.nomoreparties.stellarburgers.model;
-
 import io.restassured.RestAssured;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import site.nomoreparties.stellarburgers.setup.ForClearUp;
 import site.nomoreparties.stellarburgers.setup.ForSetUp;
+import org.openqa.selenium.WebDriver;
 
 import static io.restassured.RestAssured.given;
 

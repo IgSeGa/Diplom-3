@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers.pageobjects;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -52,5 +53,8 @@ public class MainPage {
     public WebElement getIngredButton() {
         WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(ingredButton));
         return x;
+    }
+    public void scrollToElenet(By element){
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(element));
     }
 }
