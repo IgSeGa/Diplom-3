@@ -43,7 +43,7 @@ public class TestRegister extends BaseTest implements TestData {
         compareString(TESTURL+"register", driver.getCurrentUrl());
     }
     @Step("Регистрация")
-    public void register(WebDriver driver) throws InterruptedException {
+    public void register(WebDriver driver) {
         RegisterPage objReg = new RegisterPage(driver);
         EnterAccount objEnter = new EnterAccount(driver);
         objReg.register(TESTNAME,TESTMAIL,TESTPASS);
@@ -52,7 +52,7 @@ public class TestRegister extends BaseTest implements TestData {
         objEnter.enterAccount(TESTMAIL, TESTPASS);
     }
     @Step("Проверка данных зарегистрированного пользователя")
-    public void verifyRegister(WebDriver driver) throws InterruptedException {
+    public void verifyRegister(WebDriver driver) {
         MainPage objMain = new MainPage(driver);
         Topline objTop = new Topline(driver);
         Cabinet objCab = new Cabinet(driver);
