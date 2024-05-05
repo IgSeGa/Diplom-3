@@ -64,7 +64,7 @@ public class TestRegister extends BaseTest implements TestData {
 
     @Test
     @DisplayName("Проверка регистрации вход через ЛК")
-    public void checkRegisterViaMainPageButton() throws InterruptedException {
+    public void checkRegisterViaMainPageButton() {
         enterLogin(driver);
         goToRegister(driver);
         register(driver);
@@ -72,7 +72,7 @@ public class TestRegister extends BaseTest implements TestData {
     }
     @Test
     @DisplayName("Проверка регистрации вход через кнопку на главной")
-    public void checkRegisterViaCabinetButton() throws InterruptedException {
+    public void checkRegisterViaCabinetButton() {
         clickEnter(driver);
         goToRegister(driver);
         register(driver);
