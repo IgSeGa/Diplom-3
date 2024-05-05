@@ -9,7 +9,7 @@ import site.nomoreparties.stellarburgers.pageobjects.*;
 import site.nomoreparties.stellarburgers.model.BaseTest;
 import site.nomoreparties.stellarburgers.model.TestData;
 
-public class Register extends BaseTest implements TestData {
+public class TestRegister extends BaseTest implements TestData {
 
     private WebDriver driver;
     @Before
@@ -25,14 +25,7 @@ public class Register extends BaseTest implements TestData {
         compareString("Зарегистрироваться", objEnt.registerButton().getText());
         compareString(TESTURL+"login", driver.getCurrentUrl());
     }
-    @Step("Возвращение на главную")
-    public void goBack(WebDriver driver){
-        Topline objTop = new Topline(driver);
-        MainPage objMain = new MainPage(driver);
-        objTop.clickLogo();
-        compareString("Войти в аккаунт", objMain.mainPageButton().getText());
-        compareString(TESTURL, driver.getCurrentUrl());
-    }
+
     @Step("Переход к форме логина через кнопку на главной")
     public void clickEnter(WebDriver driver){
         MainPage objMain = new MainPage(driver);
@@ -71,14 +64,21 @@ public class Register extends BaseTest implements TestData {
 
     @Test
     @DisplayName("Проверка регистрации")
-    public void checkRegister() throws InterruptedException {
+    public void checkRegisterViaMainPageButton() throws InterruptedException {
         enterLogin(driver);
-        goBack(driver);
+        goToRegister(driver);
+        register(driver);
+        verifyRegister(driver);
+    }
+    @Test
+    @DisplayName("Проверка регистрации")
+    public void checkRegisterViaCabinetButton() throws InterruptedException {
         clickEnter(driver);
         goToRegister(driver);
         register(driver);
         verifyRegister(driver);
     }
+
     @After
     public void clearUp(){
         deleteTestUser(TESTMAIL, TESTPASS);

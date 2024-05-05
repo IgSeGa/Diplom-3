@@ -11,7 +11,7 @@ import site.nomoreparties.stellarburgers.pageobjects.EnterAccount;
 import site.nomoreparties.stellarburgers.pageobjects.MainPage;
 import site.nomoreparties.stellarburgers.pageobjects.RegisterPage;
 
-public class PasswordError  extends BaseTest implements TestData {
+public class TestPasswordError extends BaseTest implements TestData {
 
     private WebDriver driver;
     @Before
