@@ -41,7 +41,7 @@ public class TestNavCabinet extends BaseTest implements TestData {
 
     @Test
     @DisplayName("Проверка перехода в личный кабинет с главной страницы")
-    public void testNavCabinet() throws InterruptedException {
+    public void testNavCabinet() {
         logIn(driver);
         enterLK(driver);
     }

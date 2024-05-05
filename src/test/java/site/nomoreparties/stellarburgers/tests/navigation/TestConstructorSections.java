@@ -2,7 +2,6 @@ package site.nomoreparties.stellarburgers.tests.navigation;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.*;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import site.nomoreparties.stellarburgers.model.BaseTest;
 import site.nomoreparties.stellarburgers.model.TestData;
@@ -38,27 +37,27 @@ public class TestConstructorSections extends BaseTest implements TestData {
     @Step("Скролл до соусов")
     public void checkScrollToSauce(WebDriver driver) throws InterruptedException {
         MainPage objMain = new MainPage(driver);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(objMain.getFirstSauce()));
+        objMain.scrollToElenet(objMain.getFirstSauce());
         Thread.sleep(500);
         compareString("Соусы", objMain.getSelectedButton().getText());
     }
     @Step("Скролл до соусов")
     public void checkScrollToIngreds(WebDriver driver) throws InterruptedException {
         MainPage objMain = new MainPage(driver);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(objMain.getFirstIngred()));
+        objMain.scrollToElenet(objMain.getFirstIngred());
         Thread.sleep(500);
         compareString("Начинки", objMain.getSelectedButton().getText());
     }
     @Step("Скролл до булок")
     public void checkScrollToBuns(WebDriver driver) throws InterruptedException {
         MainPage objMain = new MainPage(driver);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(objMain.getFirstBun()));
+        objMain.scrollToElenet(objMain.getFirstBun());
         Thread.sleep(500);
         compareString("Булки", objMain.getSelectedButton().getText());
     }
     @Test
     @DisplayName("Проверка перехода к разделам")
-    public void testConstructor() throws InterruptedException {
+    public void testConstructorNavigation() throws InterruptedException {
         gotToSauce(driver);
         goToIngreds(driver);
         gotToBuns(driver);

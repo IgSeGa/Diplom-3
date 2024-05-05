@@ -25,10 +25,11 @@ public class TestExitAccount extends BaseTest implements TestData {
     }
 
     @Step("Вход в аккаунт")
-    public void logIn(WebDriver driver) throws InterruptedException {
+    public void logIn(WebDriver driver) {
         MainPage objMain = new MainPage(driver);
         EnterAccount objEnt = new EnterAccount(driver);
         objMain.mainPageButton().click();
+        compareString("Войти", objEnt.submitButton().getText());
         objEnt.enterAccount(TESTMAIL, TESTPASS);
     }
     @Step("Вход в личный кабинет")

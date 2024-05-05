@@ -1,5 +1,4 @@
 package site.nomoreparties.stellarburgers.pageobjects;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,12 +30,6 @@ public class Topline {
     }
     public void clickLK(){
         getLK().click();
-    }
-    public void clickLogo(){
-        getLogo().click();
-    }
-    public void clickConstructor(){
-        getConstructor().click();
     }
 
 }
