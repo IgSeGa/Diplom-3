@@ -21,7 +21,7 @@ public class BaseTest implements TestData {
                 .and().body(login).post("api/auth/login").then().extract().body().path("accessToken");
         StringBuilder sb = new StringBuilder(x);
         sb.delete(0,7);
-        String token = sb.toString();;
+        String token = sb.toString();
         given().auth().oauth2(token).delete("api/auth/user").then().assertThat().statusCode(202);
     }
     public void createTestUser(String email, String password, String name){
