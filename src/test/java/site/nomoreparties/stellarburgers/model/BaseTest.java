@@ -1,6 +1,8 @@
 package site.nomoreparties.stellarburgers.model;
 import io.restassured.RestAssured;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import site.nomoreparties.stellarburgers.setup.ForClearUp;
 import site.nomoreparties.stellarburgers.setup.ForSetUp;
 import static io.restassured.RestAssured.given;
@@ -26,5 +28,4 @@ public class BaseTest implements Constants {
         given().header("Content-type", "application/json").and().body(params).post("api/auth/register")
                 .then().assertThat().statusCode(200);
     }
-
 }

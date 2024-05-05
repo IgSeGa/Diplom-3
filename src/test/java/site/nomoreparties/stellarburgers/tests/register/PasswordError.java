@@ -19,7 +19,6 @@ public class PasswordError  extends BaseTest implements Constants {
     @Inject
     private WebDriver driver;
 
-
     public void enterLK(WebDriver driver){
         MainPage objMain = new MainPage(driver);
         objMain.mainPageButton().click();
