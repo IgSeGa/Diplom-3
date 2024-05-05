@@ -1,23 +1,21 @@
 package site.nomoreparties.stellarburgers.tests.register;
-import com.google.acai.Acai;
 import org.junit.After;
-import org.junit.Rule;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import site.nomoreparties.stellarburgers.model.BaseTest;
 import site.nomoreparties.stellarburgers.model.Constants;
-import site.nomoreparties.stellarburgers.model.WebTestConfigModule;
 import site.nomoreparties.stellarburgers.pageobjects.EnterAccount;
 import site.nomoreparties.stellarburgers.pageobjects.MainPage;
 import site.nomoreparties.stellarburgers.pageobjects.RegisterPage;
 
-import javax.inject.Inject;
-
 public class PasswordError  extends BaseTest implements Constants {
-    @Rule
-    public Acai acai = new Acai(WebTestConfigModule.class);
-    @Inject
+
     private WebDriver driver;
+    @Before
+    public void setUp(){
+        driver = getDriver();
+    }
 
     public void enterLK(WebDriver driver){
         MainPage objMain = new MainPage(driver);

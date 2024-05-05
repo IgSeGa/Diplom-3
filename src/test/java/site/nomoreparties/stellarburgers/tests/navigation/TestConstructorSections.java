@@ -1,21 +1,20 @@
 package site.nomoreparties.stellarburgers.tests.navigation;
-import com.google.acai.Acai;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.WebDriver;
+import site.nomoreparties.stellarburgers.model.BaseTest;
 import site.nomoreparties.stellarburgers.model.Constants;
-import site.nomoreparties.stellarburgers.model.WebTestConfigModule;
 import site.nomoreparties.stellarburgers.pageobjects.MainPage;
 
 import javax.inject.Inject;
 
-public class TestConstructorSections implements Constants {
-    @Rule
-    public Acai acai = new Acai(WebTestConfigModule.class);
-    @Inject
+public class TestConstructorSections extends BaseTest implements Constants {
+
     private WebDriver driver;
+
+    @Before
+    public void setUp(){
+        driver = getDriver();
+    }
 
     public void gotToSauce(WebDriver driver){
         MainPage objMain = new MainPage(driver);

@@ -1,15 +1,10 @@
 package site.nomoreparties.stellarburgers.tests.account;
-import com.google.acai.Acai;
-import com.google.inject.Inject;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import site.nomoreparties.stellarburgers.model.BaseTest;
 import site.nomoreparties.stellarburgers.model.Constants;
-import site.nomoreparties.stellarburgers.model.WebTestConfigModule;
 import site.nomoreparties.stellarburgers.pageobjects.Cabinet;
 import site.nomoreparties.stellarburgers.pageobjects.EnterAccount;
 import site.nomoreparties.stellarburgers.pageobjects.MainPage;
@@ -17,13 +12,12 @@ import site.nomoreparties.stellarburgers.pageobjects.Topline;
 
 
 public class TestExitAccount extends BaseTest implements Constants {
-    @Rule
-    public Acai acai = new Acai(WebTestConfigModule.class);
-    @Inject
+
     private WebDriver driver;
 
     @Before
     public void setUp(){
+        driver = getDriver();
         createTestUser(TESTMAIL, TESTPASS, TESTNAME);
     }
     public void logIn(WebDriver driver) throws InterruptedException {

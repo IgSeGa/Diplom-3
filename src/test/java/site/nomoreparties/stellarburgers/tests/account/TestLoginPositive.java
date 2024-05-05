@@ -1,26 +1,19 @@
 package site.nomoreparties.stellarburgers.tests.account;
-import com.google.acai.Acai;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import site.nomoreparties.stellarburgers.model.BaseTest;
 import site.nomoreparties.stellarburgers.model.Constants;
-import site.nomoreparties.stellarburgers.model.WebTestConfigModule;
 import site.nomoreparties.stellarburgers.pageobjects.*;
-import javax.inject.Inject;
 
 public class TestLoginPositive extends BaseTest implements Constants {
-    @Rule
-    public Acai acai = new Acai(WebTestConfigModule.class);
-    @Inject
+
     private WebDriver driver;
 
     @Before
     public void setUp(){
+        driver = getDriver();
         createTestUser(TESTMAIL, TESTPASS, TESTNAME);
     }
 
