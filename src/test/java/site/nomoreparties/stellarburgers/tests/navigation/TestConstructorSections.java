@@ -5,8 +5,6 @@ import site.nomoreparties.stellarburgers.model.BaseTest;
 import site.nomoreparties.stellarburgers.model.Constants;
 import site.nomoreparties.stellarburgers.pageobjects.MainPage;
 
-import javax.inject.Inject;
-
 public class TestConstructorSections extends BaseTest implements Constants {
 
     private WebDriver driver;
