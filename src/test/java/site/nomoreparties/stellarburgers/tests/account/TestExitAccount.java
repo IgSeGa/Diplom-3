@@ -44,12 +44,12 @@ public class TestExitAccount extends BaseTest implements TestData {
         Cabinet objCab = new Cabinet(driver);
         EnterAccount objEnt = new EnterAccount(driver);
         objCab.getExit().click();
-        Assert.assertTrue("Войти".equals(objEnt.submitButton().getText()));
+        compareString("Войти", objEnt.submitButton().getText());
         compareString(TESTURL+"login", driver.getCurrentUrl());
     }
     @Test
     @DisplayName("Проверка выхода из аккаунта")
-    public void testExit() throws InterruptedException {
+    public void testExit() {
         driver.get(TESTURL);
         logIn(driver);
         enterLK(driver);

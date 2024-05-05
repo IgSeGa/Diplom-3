@@ -42,7 +42,7 @@ public class TestPasswordError extends BaseTest implements TestData {
 
     @Test
     @DisplayName("Проверка вызова ошибки пароля")
-    public void testPassLenght(){
+    public void testPassLength(){
         enterLK(driver);
         goToRegister(driver);
         checkRegisterError(driver);

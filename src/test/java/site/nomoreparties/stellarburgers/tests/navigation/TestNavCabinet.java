@@ -16,7 +16,7 @@ public class TestNavCabinet extends BaseTest implements TestData {
     private WebDriver driver;
 
     @Before
-    public void setUp() throws InterruptedException {
+    public void setUp() {
         driver = getDriver();
         createTestUser(TESTMAIL, TESTPASS, TESTNAME);
         driver.get(TESTURL);
