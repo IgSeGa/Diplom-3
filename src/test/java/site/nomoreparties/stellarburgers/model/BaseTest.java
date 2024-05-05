@@ -1,17 +1,14 @@
 package site.nomoreparties.stellarburgers.model;
 import io.restassured.RestAssured;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
 import site.nomoreparties.stellarburgers.setup.ForClearUp;
 import site.nomoreparties.stellarburgers.setup.ForSetUp;
-import org.openqa.selenium.WebDriver;
-
 import static io.restassured.RestAssured.given;
 
 public class BaseTest implements Constants {
 
-    public void checkString(String string1, String string2){
-        Assert.assertEquals(string1, string2);
+    public void checkString(String expected, String actual){
+        Assert.assertEquals(expected, actual);
     }
     public void deleteTestUser(String email, String password){
         RestAssured.baseURI = TESTURL;

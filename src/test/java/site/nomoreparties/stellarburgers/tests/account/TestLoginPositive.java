@@ -13,44 +13,48 @@ import site.nomoreparties.stellarburgers.pageobjects.*;
 import javax.inject.Inject;
 
 public class TestLoginPositive extends BaseTest implements Constants {
-
     @Rule
     public Acai acai = new Acai(WebTestConfigModule.class);
     @Inject
     private WebDriver driver;
-    MainPage objMain = new MainPage(driver);
-    EnterAccount objEnter = new EnterAccount(driver);
-    ForgotPassword objForgot = new ForgotPassword(driver);
-    Topline objTop = new Topline(driver);
-    RegisterPage objReg = new RegisterPage(driver);
 
     @Before
     public void setUp(){
         createTestUser(TESTMAIL, TESTPASS, TESTNAME);
     }
 
-    public void enterThroughTopline(){
+    public void enterThroughTopline(WebDriver driver){
+        Topline objTop = new Topline(driver);
         objTop.clickLK();
         checkString(TESTURL+"login", driver.getCurrentUrl());
     }
-    public void enetrThroughButton(){
+    public void enetrThroughButton(WebDriver driver){
+        MainPage objMain = new MainPage(driver);
         objMain.mainPageButton().click();
         checkString(TESTURL+"login", driver.getCurrentUrl());
     }
-    public void enterThoughRegister(){
+    public void enterThoughRegister(WebDriver driver){
+        MainPage objMain = new MainPage(driver);
+        EnterAccount objEnter = new EnterAccount(driver);
+        RegisterPage objReg = new RegisterPage(driver);
         objMain.mainPageButton().click();
         objEnter.goToRegister();
         objReg.enterAccount();
         checkString(TESTURL+"login", driver.getCurrentUrl());
     }
-    public void enterThroughForgot(){
+    public void enterThroughForgot(WebDriver driver){
+        MainPage objMain = new MainPage(driver);
+        EnterAccount objEnter = new EnterAccount(driver);
+        ForgotPassword objForgot = new ForgotPassword(driver);
         objMain.mainPageButton().click();
         objEnter.forgotPassword().click();
         objForgot.accountFromForgot().click();
         checkString(TESTURL+"login", driver.getCurrentUrl());
 
     }
-    public void enterAccount() throws InterruptedException {
+    public void enterAccount(WebDriver driver) throws InterruptedException {
+        EnterAccount objEnter = new EnterAccount(driver);
+        MainPage objMain = new MainPage(driver);
         objEnter.enterAccount(TESTMAIL, TESTPASS);
         checkString("Оформить заказ", objMain.mainPageButton().getText());
         checkString(TESTURL, driver.getCurrentUrl());
@@ -59,26 +63,26 @@ public class TestLoginPositive extends BaseTest implements Constants {
     @Test
     public void checkEnterMain() throws InterruptedException {
         driver.get(TESTURL);
-        enetrThroughButton();
-        enterAccount();
+        enetrThroughButton(driver);
+        enterAccount(driver);
     }
     @Test
     public void checkEnterTop() throws InterruptedException {
         driver.get(TESTURL);
-        enterThroughTopline();
-        enterAccount();
+        enterThroughTopline(driver);
+        enterAccount(driver);
     }
     @Test
     public void checkEnterForgot() throws InterruptedException {
         driver.get(TESTURL);
-        enterThroughForgot();
-        enterAccount();
+        enterThroughForgot(driver);
+        enterAccount(driver);
     }
     @Test
     public void checkEnterRegister() throws InterruptedException {
         driver.get(TESTURL);
-        enterThoughRegister();
-        enterAccount();
+        enterThoughRegister(driver);
+        enterAccount(driver);
     }
     @After
     public void clearUp(){
