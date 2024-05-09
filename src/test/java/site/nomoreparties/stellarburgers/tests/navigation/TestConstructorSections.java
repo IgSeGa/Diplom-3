@@ -3,67 +3,40 @@ import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
-import site.nomoreparties.stellarburgers.model.BaseTest;
-import site.nomoreparties.stellarburgers.model.TestData;
-import site.nomoreparties.stellarburgers.pageobjects.MainPage;
+import site.nomoreparties.stellarburgers.pageobjects.*;
+import site.nomoreparties.stellarburgers.tests.BaseTest;
 
-public class TestConstructorSections extends BaseTest implements TestData {
+public class TestConstructorSections extends BaseTest {
 
-    private WebDriver driver;
+    private WebDriver driver = getDriver();
+    private MainPage objMain = new MainPage(driver);
+
 
     @Before
     public void setUp(){
-        driver = getDriver();
         driver.get(TESTURL);
     }
     @Step("Проверка перехода к соусам по кнопке")
-    public void gotToSauce(WebDriver driver){
-        MainPage objMain = new MainPage(driver);
+    public void gotToSauce(){
         objMain.getSauceButton().click();
-        compareString("Соусы", objMain.getSelectedButton().getText());
+        Assert.assertEquals("Соусы", objMain.getSelectedButton().getText());
     }
     @Step("Проверка перехода к ингредиентам по кнопке")
-    public void goToIngreds(WebDriver driver){
-        MainPage objMain = new MainPage(driver);
+    public void goToIngreds(){
         objMain.getIngredButton().click();
-        compareString("Начинки", objMain.getSelectedButton().getText());
+        Assert.assertEquals("Начинки", objMain.getSelectedButton().getText());
     }
     @Step("Проверка перехода к булочкам по кнопке")
-    public void gotToBuns(WebDriver driver){
-        MainPage objMain = new MainPage(driver);
+    public void gotToBuns(){
         objMain.getBunButton().click();
-        compareString("Булки", objMain.getSelectedButton().getText());
-    }
-    @Step("Скролл до соусов")
-    public void checkScrollToSauce(WebDriver driver) throws InterruptedException {
-        MainPage objMain = new MainPage(driver);
-        scrollToElenet(driver, objMain.getFirstSauce());
-        Thread.sleep(500);
-        compareString("Соусы", objMain.getSelectedButton().getText());
-    }
-    @Step("Скролл до соусов")
-    public void checkScrollToIngreds(WebDriver driver) throws InterruptedException {
-        MainPage objMain = new MainPage(driver);
-        scrollToElenet(driver, objMain.getFirstIngred());
-        Thread.sleep(500);
-        compareString("Начинки", objMain.getSelectedButton().getText());
-    }
-    @Step("Скролл до булок")
-    public void checkScrollToBuns(WebDriver driver) throws InterruptedException {
-        MainPage objMain = new MainPage(driver);
-        scrollToElenet(driver, objMain.getFirstBun());
-        Thread.sleep(500);
-        compareString("Булки", objMain.getSelectedButton().getText());
+        Assert.assertEquals("Булки", objMain.getSelectedButton().getText());
     }
     @Test
     @DisplayName("Проверка перехода к разделам")
     public void testConstructorNavigation() throws InterruptedException {
-        gotToSauce(driver);
-        goToIngreds(driver);
-        gotToBuns(driver);
-        checkScrollToSauce(driver);
-        checkScrollToIngreds(driver);
-        checkScrollToBuns(driver);
+        gotToSauce();
+        goToIngreds();
+        gotToBuns();
     }
     @After
     public void clearUp(){

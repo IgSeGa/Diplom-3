@@ -1,19 +1,17 @@
-package site.nomoreparties.stellarburgers.model;
+package site.nomoreparties.stellarburgers.tests;
 import io.restassured.RestAssured;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import site.nomoreparties.stellarburgers.setup.ForClearUp;
 import site.nomoreparties.stellarburgers.setup.ForSetUp;
 import static io.restassured.RestAssured.given;
 
-public class BaseTest implements TestData {
+public class BaseTest {
+    public static final String TESTURL = "https://stellarburgers.nomoreparties.site/";
+    public static final String TESTMAIL = "diplomauser@praktikum.ru";
+    public static final String TESTPASS = "123456";
+    public static final String TESTNAME = "Vasya";
 
-    public void compareString(String expected, String actual){
-        Assert.assertEquals(expected, actual);
-    }
     public void deleteTestUser(String email, String password){
         RestAssured.baseURI = TESTURL;
         ForClearUp login = new ForClearUp(email, password);
@@ -37,8 +35,5 @@ public class BaseTest implements TestData {
             return new ChromeDriver();
         }
         return new ChromeDriver();
-    }
-    public void scrollToElenet(WebDriver driver, By element){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(element));
     }
 }

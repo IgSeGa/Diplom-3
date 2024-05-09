@@ -2,107 +2,98 @@ package site.nomoreparties.stellarburgers.tests.account;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import site.nomoreparties.stellarburgers.model.BaseTest;
-import site.nomoreparties.stellarburgers.model.TestData;
+import site.nomoreparties.stellarburgers.tests.BaseTest;
 import site.nomoreparties.stellarburgers.pageobjects.*;
 
-public class TestLoginPositive extends BaseTest implements TestData {
+public class TestLoginPositive extends BaseTest{
 
-    private WebDriver driver;
+    private WebDriver driver = getDriver();
+    private Topline objTop = new Topline(driver);
+    private EnterAccount objEnt = new EnterAccount(driver);
+    private RegisterPage objReg = new RegisterPage(driver);
+    private ForgotPassword objForg = new ForgotPassword(driver);
+    private MainPage objMain = new MainPage(driver);
+    private Cabinet objCab = new Cabinet(driver);
 
     @Before
     public void setUp(){
-        driver = getDriver();
         createTestUser(TESTMAIL, TESTPASS, TESTNAME);
         driver.get(TESTURL);
     }
     @Step("Переход к авторизации через ЛК")
-    public void enterThroughTopline(WebDriver driver){
-        Topline objTop = new Topline(driver);
-        EnterAccount objEnter = new EnterAccount(driver);
+    public void enterThroughTopline(){
         objTop.clickLK();
-        compareString("Войти", objEnter.submitButton().getText());
-        compareString(TESTURL+"login", driver.getCurrentUrl());
+        Assert.assertEquals("Войти", objEnt.submitButton().getText());
+        Assert.assertEquals(TESTURL+"login", driver.getCurrentUrl());
     }
     @Step("Переход к авторизации через кнопку Войти")
-    public void enetrThroughButton(WebDriver driver){
-        MainPage objMain = new MainPage(driver);
-        EnterAccount objEnter = new EnterAccount(driver);
+    public void enetrThroughButton(){
         objMain.mainPageButton().click();
-        compareString("Войти", objEnter.submitButton().getText());
-        compareString(TESTURL+"login", driver.getCurrentUrl());
+        Assert.assertEquals("Войти", objEnt.submitButton().getText());
+        Assert.assertEquals(TESTURL+"login", driver.getCurrentUrl());
     }
     @Step("Переход к авторизации через форму регистрации")
-    public void enterThoughRegister(WebDriver driver){
-        MainPage objMain = new MainPage(driver);
-        EnterAccount objEnter = new EnterAccount(driver);
-        RegisterPage objReg = new RegisterPage(driver);
+    public void enterThoughRegister(){
         objMain.mainPageButton().click();
-        objEnter.registerButton().click();
+        objEnt.registerButton().click();
         objReg.enterAccount();
-        compareString("Войти", objEnter.submitButton().getText());
-        compareString(TESTURL+"login", driver.getCurrentUrl());
+        Assert.assertEquals("Войти", objEnt.submitButton().getText());
+        Assert.assertEquals(TESTURL+"login", driver.getCurrentUrl());
     }
     @Step("Переход к авторизации через восстановление пароля")
-    public void enterThroughForgot(WebDriver driver){
-        MainPage objMain = new MainPage(driver);
-        EnterAccount objEnter = new EnterAccount(driver);
-        ForgotPassword objForgot = new ForgotPassword(driver);
+    public void enterThroughForgot(){
         objMain.mainPageButton().click();
-        objEnter.forgotPassword().click();
-        objForgot.accountFromForgot().click();
-        compareString("Войти", objEnter.submitButton().getText());
-        compareString(TESTURL+"login", driver.getCurrentUrl());
+        objEnt.forgotPassword().click();
+        objForg.accountFromForgot().click();
+        Assert.assertEquals("Войти", objEnt.submitButton().getText());
+        Assert.assertEquals(TESTURL+"login", driver.getCurrentUrl());
 
     }
     @Step("Авторизация")
-    public void enterAccount(WebDriver driver) {
-        EnterAccount objEnter = new EnterAccount(driver);
-        MainPage objMain = new MainPage(driver);
-        objEnter.enterAccount(TESTMAIL, TESTPASS);
-        compareString("Оформить заказ", objMain.mainPageButton().getText());
-        compareString(TESTURL, driver.getCurrentUrl());
+    public void enterAccount() {
+        objEnt.enterAccount(TESTMAIL, TESTPASS);
+        Assert.assertEquals("Оформить заказ", objMain.mainPageButton().getText());
+        Assert.assertEquals(TESTURL, driver.getCurrentUrl());
     }
     @Step("Проверка данных аккаунта")
-    public void checkAccountData(WebDriver driver){
-        Topline objTop = new Topline(driver);
-        Cabinet objCab = new Cabinet(driver);
+    public void checkAccountData(){
         objTop.clickLK();
-        compareString(TESTMAIL,objCab.emailTest());
-        compareString(TESTNAME, objCab.nameTest());
-        compareString(TESTURL+"account/profile", driver.getCurrentUrl());
+        Assert.assertEquals(TESTMAIL,objCab.emailTest());
+        Assert.assertEquals(TESTNAME, objCab.nameTest());
+        Assert.assertEquals(TESTURL+"account/profile", driver.getCurrentUrl());
     }
 
     @Test
     @DisplayName("Проверка авторизации через кнопку на главной")
     public void checkEnterMain() {
-        enetrThroughButton(driver);
-        enterAccount(driver);
-        checkAccountData(driver);
+        enetrThroughButton();
+        enterAccount();
+        checkAccountData();
     }
     @Test
     @DisplayName("Проверка авторизации через кнопку ЛК")
     public void checkEnterTop() {
-        enterThroughTopline(driver);
-        enterAccount(driver);
-        checkAccountData(driver);
+        enterThroughTopline();
+        enterAccount();
+        checkAccountData();
     }
     @Test
     @DisplayName("Проверка авторизации через восстановление пароля")
     public void checkEnterForgot() {
-        enterThroughForgot(driver);
-        enterAccount(driver);
-        checkAccountData(driver);
+        enterThroughForgot();
+        enterAccount();
+        checkAccountData();
     }
     @Test
     @DisplayName("Проверка авторизации через страницу Регистрации")
     public void checkEnterRegister(){
-        enterThoughRegister(driver);
-        enterAccount(driver);
-        checkAccountData(driver);
+        enterThoughRegister();
+        enterAccount();
+        checkAccountData();
     }
     @After
     public void clearUp(){

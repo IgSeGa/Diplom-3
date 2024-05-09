@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class Topline {
@@ -17,16 +16,13 @@ public class Topline {
     private By cabinetButton = By.xpath("//a[@href=\"/account\"]");
 
     public WebElement getConstructor(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(constructor));
-        return x;
+        return  new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(constructor));
     }
     public WebElement getLogo(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(topLogo));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(topLogo));
     }
     public WebElement getLK(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(cabinetButton));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(cabinetButton));
     }
     public void clickLK(){
         getLK().click();

@@ -2,41 +2,41 @@ package site.nomoreparties.stellarburgers.tests.navigation;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import site.nomoreparties.stellarburgers.model.BaseTest;
-import site.nomoreparties.stellarburgers.model.TestData;
+import site.nomoreparties.stellarburgers.tests.BaseTest;
 import site.nomoreparties.stellarburgers.pageobjects.EnterAccount;
 import site.nomoreparties.stellarburgers.pageobjects.MainPage;
 import site.nomoreparties.stellarburgers.pageobjects.Topline;
 
-public class TestNavCabinet extends BaseTest implements TestData {
+public class TestNavCabinet extends BaseTest {
 
-    private WebDriver driver;
+    private WebDriver driver = getDriver();
+    private EnterAccount objEnt = new EnterAccount(driver);
+    private MainPage objMain = new MainPage(driver);
+    private Topline objTop = new Topline(driver);
 
     @Before
     public void setUp() {
-        driver = getDriver();
-        createTestUser(TESTMAIL, TESTPASS, TESTNAME);
         driver.get(TESTURL);
+        createTestUser(TESTMAIL, TESTPASS, TESTNAME);
     }
     @Step("Логин пользователя")
     public void logIn(WebDriver driver) {
-        EnterAccount objEnt = new EnterAccount(driver);
-        MainPage objMain = new MainPage(driver);
+
         objMain.mainPageButton().click();
-        compareString("Войти", objEnt.submitButton().getText());
-        compareString(TESTURL+"login", driver.getCurrentUrl());
+        Assert.assertEquals("Войти", objEnt.submitButton().getText());
+        Assert.assertEquals(TESTURL+"login", driver.getCurrentUrl());
         objEnt.enterAccount(TESTMAIL, TESTPASS);
-        compareString("Оформить заказ", objMain.mainPageButton().getText());
-        compareString(TESTURL, driver.getCurrentUrl());
+        Assert.assertEquals("Оформить заказ", objMain.mainPageButton().getText());
+        Assert.assertEquals(TESTURL, driver.getCurrentUrl());
     }
     @Step("Вход в личный Кабинет")
     public void enterLK(WebDriver driver){
-        Topline objTop = new Topline(driver);
         objTop.clickLK();
-        compareString(TESTURL+"account", driver.getCurrentUrl());
+        Assert.assertEquals(TESTURL+"account", driver.getCurrentUrl());
     }
 
     @Test

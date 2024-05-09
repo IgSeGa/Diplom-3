@@ -19,23 +19,18 @@ public class Cabinet {
 
 
     public WebElement getName(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(name));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(name));
     }
     public String nameTest(){
-        String x = getName().getAttribute("Value").toString();
-        return x;
+        return getName().getAttribute("Value").toString();
     }
     public WebElement getMail(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(email));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(email));
     }
     public WebElement getExit(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(exit));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(exit));
     }
     public String emailTest(){
-        String x = getMail().getAttribute("Value").toString();
-        return x;
+        return getMail().getAttribute("Value").toString();
     }
 }

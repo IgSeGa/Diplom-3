@@ -11,31 +11,26 @@ public class EnterAccount {
     public EnterAccount(WebDriver driver){
         this.driver = driver;
     }
-    private By login = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[1]/div/div/input");
-    private By password = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[2]/div/div/input");
+    private By login = By.xpath("//input[@name=\"name\"]");
+    private By password = By.xpath("//input[@name=\"Пароль\"]");
     private By submit = By.xpath("//button[contains(text(), \"Войти\")]");
     private By register = By.xpath("//a[@href=\"/register\"]");
     private By rememberPassword = By.xpath("//a[@href=\"/forgot-password\"]");
 
     public WebElement registerButton(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(register));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(register));
     }
     public WebElement userName(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(login));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(login));
     }
     public WebElement userPass(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(password));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(password));
     }
     public WebElement submitButton(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(submit));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(submit));
     }
     public WebElement forgotPassword(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(rememberPassword));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(rememberPassword));
     }
     public void enterAccount(String username, String userpass) {
         userName().click();

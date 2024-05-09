@@ -14,7 +14,6 @@ public class ForgotPassword {
     private By enterAccount = By.xpath("//a[@href=\"/login\"]");
 
     public WebElement accountFromForgot(){
-        WebElement x = new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(enterAccount));
-        return x;
+        return new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(enterAccount));
     }
 }
