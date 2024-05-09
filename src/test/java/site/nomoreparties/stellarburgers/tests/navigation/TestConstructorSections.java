@@ -33,7 +33,7 @@ public class TestConstructorSections extends BaseTest {
     }
     @Test
     @DisplayName("Проверка перехода к разделам")
-    public void testConstructorNavigation() throws InterruptedException {
+    public void testConstructorNavigation() {
         gotToSauce();
         goToIngreds();
         gotToBuns();
